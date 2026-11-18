@@ -1,0 +1,57 @@
+# Builds the shared Bob DMG and attaches it to a GitHub release when a version tag is pushed.
+#   git tag v0.1.0 && git push origin v0.1.0
+# The tag must match "version" in app/package.json (v0.1.0 <-> 0.1.0).
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  dmg:
+    # Apple Silicon runner: the shared build is arm64 only.
+    runs-on: macos-14
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check tag matches app version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(node -p "require('./app/package.json').version")"
+          if [ "$tag" != "$version" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match app/package.json version $version" >&2
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Install app dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Test
+        working-directory: app
+        run: npm test
+
+      - name: Build the shared DMG
+        working-directory: app
+        run: npm run dmg:share
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          dmg="$(ls app/release-share/Bob-Shared-*.dmg)"
+          gh release create "$GITHUB_REF_NAME" "$dmg" \
+            --title "Bob ${GITHUB_REF_NAME#v}" \
+            --generate-notes
