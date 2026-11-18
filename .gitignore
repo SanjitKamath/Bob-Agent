@@ -61,7 +61,7 @@ evals/private/
 .mypy_cache/
 .ruff_cache/
 *.egg-info/
-build/
+/build/
 dist/
 
 # Local runtime state
