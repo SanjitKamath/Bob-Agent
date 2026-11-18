@@ -1,0 +1,14 @@
+id: calendar
+name: Calendar
+version: 0.1.0
+description: Reads your calendar. Read-only.
+mcp: python -m bob_calendar.server
+tools:
+  today: read
+  range: read
+  free_slots: read
+settings:
+  day_start: {type: string, default: "09:00", description: "Start of your working day (HH:MM)"}
+  day_end: {type: string, default: "18:00", description: "End of your working day (HH:MM)"}
+permissions:
+  network: none

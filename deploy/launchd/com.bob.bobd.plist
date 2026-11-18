@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- bobd as a launchd service. Replace __BOB_HOME__ with the repo path, then:
+     cp deploy/launchd/com.bob.bobd.plist ~/Library/LaunchAgents/
+     launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.bob.bobd.plist
+     To run it as the separate `bob` user instead, install it as a LaunchDaemon with
+     a UserName key (see deploy/setup_bob_user.sh). -->
+<plist version="1.0">
+<dict>
+    <key>Label</key><string>com.bob.bobd</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>__BOB_HOME__/.venv/bin/bobd</string>
+        <string>__BOB_HOME__/config.yaml</string>
+    </array>
+    <key>WorkingDirectory</key><string>__BOB_HOME__</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <!-- launchd gives background jobs a minimal environment: Homebrew git and gh go here. -->
+        <key>PATH</key><string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>PYDANTIC_AI_NO_BANNER</key><string>1</string>
+    </dict>
+    <key>RunAtLoad</key><true/>
+    <key>KeepAlive</key><true/>
+    <key>StandardOutPath</key><string>/tmp/bobd.log</string>
+    <key>StandardErrorPath</key><string>/tmp/bobd.log</string>
+</dict>
+</plist>

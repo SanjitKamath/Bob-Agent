@@ -1,0 +1,21 @@
+[project]
+name = "bob-editor"
+version = "0.1.0"
+description = "Bob plugin: read and change files in a folder you name, with undo."
+requires-python = ">=3.12"
+dependencies = [
+    "bob-plugin-sdk",
+]
+
+[project.entry-points."bob.plugins"]
+editor = "bob_editor"
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "bob_editor"
+
+[tool.uv.sources]
+bob-plugin-sdk = { workspace = true }

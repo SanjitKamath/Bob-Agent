@@ -1,0 +1,42 @@
+id: web
+name: Web
+version: 0.1.0
+description: Looks things up on the internet. Search, read one page, and the weather. Read only.
+mcp: python -m bob_web.server
+default_enabled: false
+specialist:
+  name: Web
+  description: >-
+    Anything that needs the internet: the weather, news, current facts, prices, versions, how a
+    library or tool works, or anything Bob may not know
+  prompt: prompts/specialist.md
+  model_role: main
+  routes: [web, internet, online, weather, forecast, temperature, rain, news, google, website, webpage]
+tools:
+  search: read
+  fetch: read
+  weather: read
+permissions:
+  # Search goes to DuckDuckGo (Wikipedia if that fails) and the weather to Open-Meteo. The page
+  # reader goes to any public website it is asked for, and never to an address inside your
+  # own Mac or network.
+  network: [html.duckduckgo.com, en.wikipedia.org, geocoding-api.open-meteo.com, api.open-meteo.com, "any public website, for the page reader"]
+settings:
+  home_place:
+    type: string
+    default: ""
+    title: Your usual place
+    description: "Used for the weather when you do not say where, for example Bengaluru"
+  temperature_unit:
+    type: string
+    default: celsius
+    title: Temperature unit
+    description: celsius or fahrenheit
+  search_results:
+    type: integer
+    default: 6
+    description: How many search results to look at
+  page_characters:
+    type: integer
+    default: 8000
+    description: How much of a page to read. More is slower and can crowd out the answer

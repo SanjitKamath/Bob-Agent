@@ -1,0 +1,79 @@
+# Bob configuration. Changes made in Settings are stored in data/bob.sqlite and win
+# over this file. Everything here is local: Ollama and bobd bind to 127.0.0.1 only.
+#
+# Your own settings (private plugins, your knowledge sources, your folders) go in
+# config.local.yaml beside this file. It is not in git, and it is laid over this one:
+# mappings merge, `collections` merge by id, everything else is replaced.
+
+ollama:
+  base_url: http://127.0.0.1:11434
+  keep_alive: 30m                # how long a model stays loaded after Bob uses it
+  keep_warm: [router, main]      # roles bobd keeps loaded, so replies never wait for a load
+                                 # (main ~14 GB, router ~6 GB). Use [] to free that memory.
+
+# Model roles for a 24-32 GB Mac. Check tags against `ollama list` before changing.
+# num_ctx is set per role: Ollama's small default silently truncates long prompts.
+models:
+  router:     {model: "gemma4:e4b", num_ctx: 8192, temperature: 0.0}
+  main:       {model: "gpt-oss:20b", num_ctx: 32768}
+  coder:      {model: "gpt-oss:20b", num_ctx: 32768}
+  vision:     {model: "gemma4:e4b", num_ctx: 8192}
+  embeddings: {model: "qwen3-embedding:0.6b", num_ctx: 16384, dimensions: 1024}
+  # 48 GB: main "qwen3.6:35b-a3b", coder "qwen3.6:27b".
+  # 64 GB+: also embeddings "qwen3-embedding:4b" (changing it rebuilds the index).
+
+server:
+  host: 127.0.0.1
+  port: 8765
+
+paths:
+  data: data
+  plugins: plugins
+  # Plugins added from a .whl file (Settings > Plugins > Add) are unpacked here.
+  user_site: data/user_plugins
+
+plugins:
+  # Plugins that are on by default (Knowledge, Files, Tasks, Documents, System) start on
+  # first run. Add others here, or switch them on with `bob plugin enable <id>`.
+  enabled: []
+  # Per-plugin settings. Yours go in config.local.yaml, which is not in git.
+  settings:
+    files:
+      read_roots: ""
+
+knowledge:
+  root: ""
+  github:
+    auth: token        # token = read-only token (recommended) | gh = reuse your gh login
+  poll_minutes: 15
+  collections:
+    - id: reading
+      sources:
+        - files: {}                              # whatever you drop in
+    # - id: contracts
+    #   sources:
+    #     - folder: {path: ~/Documents/Contracts, include: ["**/*.pdf", "**/*.docx"]}
+
+# Override a routine's schedule or switch it off, by routine id.
+routines: {}
+#  mail-triage: {every_minutes: 15, between: ["08:00", "20:00"]}
+#  morning-brief: {cron: "30 8 * * 1-5"}
+
+security:
+  # "required": bobd shuts down unless the OS itself stops it writing to protected_roots.
+  # Set this once bobd runs as the separate `bob` macOS user (see deploy/setup_bob_user.sh).
+  os_isolation: warn
+  protected_roots: []
+
+telemetry:
+  # Point at your observability_pipeline OTLP/HTTP endpoint to get traces in Grafana.
+  otlp_endpoint: null   # e.g. http://127.0.0.1:4318
+
+agent:
+  max_steps: 8
+  max_tools_per_turn: 8
+  quick_small_talk: true         # greetings and thanks skip routing and tools
+  cache:                         # reuse answers to repeated questions
+    enabled: true
+    similarity: 0.93             # 1.0 = only the same question; lower also matches rephrasings
+    max_age_hours: 24

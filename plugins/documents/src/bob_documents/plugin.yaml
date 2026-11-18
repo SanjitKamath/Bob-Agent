@@ -1,0 +1,17 @@
+id: documents
+name: Documents
+version: 0.1.0
+description: Parses PDF forms, Word documents and images into fields and text. Read-only.
+mcp: python -m bob_documents.server
+default_enabled: true
+tools:
+  pdf_fields: read
+  docx_parse: read
+  ocr: read
+settings:
+  read_roots:
+    type: string
+    default: "~/Documents:~/Desktop:~/Downloads"
+    description: Folders Bob may read documents from, separated by colons.
+permissions:
+  network: none

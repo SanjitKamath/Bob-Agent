@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Ollama as a launchd service, bound to loopback. Install:
+     cp deploy/launchd/com.bob.ollama.plist ~/Library/LaunchAgents/
+     launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.bob.ollama.plist
+     Quit the Ollama menu bar app first, so only one server holds port 11434. -->
+<plist version="1.0">
+<dict>
+    <key>Label</key><string>com.bob.ollama</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/ollama</string>
+        <string>serve</string>
+    </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>OLLAMA_HOST</key><string>127.0.0.1:11434</string>
+        <key>OLLAMA_FLASH_ATTENTION</key><string>1</string>
+        <key>OLLAMA_KV_CACHE_TYPE</key><string>q8_0</string>
+        <key>OLLAMA_KEEP_ALIVE</key><string>30m</string>
+        <key>OLLAMA_MAX_LOADED_MODELS</key><string>3</string>
+        <key>OLLAMA_NUM_PARALLEL</key><string>2</string>
+    </dict>
+    <key>RunAtLoad</key><true/>
+    <key>KeepAlive</key><true/>
+    <key>StandardOutPath</key><string>/tmp/bob-ollama.log</string>
+    <key>StandardErrorPath</key><string>/tmp/bob-ollama.log</string>
+</dict>
+</plist>

@@ -1,0 +1,35 @@
+id: tasks
+name: Tasks
+version: 0.1.0
+description: Your task list. Captures, prioritises and plans the day.
+mcp: python -m bob_tasks.server
+default_enabled: true
+specialist:
+  name: Tasks
+  description: Captures tasks, prioritises them and plans the day
+  prompt: prompts/specialist.md
+  model_role: router
+  routes: [task, tasks, todo, to-do, remind, reminder, plan my day, priorities]
+  servers: [calendar]
+tools:
+  list: read
+  summary: read
+  create: draft
+  update: draft
+  complete: draft
+  extract_from: draft
+widget_card:
+  title: Tasks
+  value: counts.open
+  status: "{due_today} today, {overdue} overdue"
+  refresh: on_event
+routines:
+  - id: weekly-review
+    title: Weekly review
+    prompt: >-
+      Write my weekly review. List the tasks completed in the last 7 days, then the open
+      tasks ordered by priority and due date, and point out anything overdue.
+    card: review
+    cron: "30 17 * * 5"
+permissions:
+  network: none

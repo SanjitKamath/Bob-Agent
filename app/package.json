@@ -1,0 +1,43 @@
+{
+  "name": "bob-app",
+  "productName": "Bob",
+  "version": "0.1.0",
+  "description": "Bob's Mac app: the Bob window, menu bar dropdown, hotkey panel, desktop widget and settings.",
+  "private": true,
+  "main": "dist/main/index.js",
+  "scripts": {
+    "build": "node build.mjs && vite build",
+    "start": "npm run build && electron .",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "smoke": "npm run build && electron . --smoke",
+    "dist": "npm run build && electron-builder --mac dir && codesign --force --deep --sign - release/mac-arm64/Bob.app",
+    "dmg": "npm run dist && bash scripts/make-dmg.sh",
+    "stage:share": "uv run --no-project --python 3.12 python ../deploy/share/stage_runtime.py",
+    "dist:share": "npm run stage:share && npm run build && electron-builder --mac dir --config electron-builder.share.yml && codesign --force --deep --sign - release-share/mac-arm64/Bob.app",
+    "dmg:share": "npm run dist:share && BOB_RELEASE=release-share BOB_DMG_NAME=Bob-Shared bash scripts/make-dmg.sh"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "ws": "^8.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/ws": "^8.18.2",
+    "@vitejs/plugin-react": "^6.3.0",
+    "electron": "^45.3.2",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
+  },
+  "allowScripts": {
+    "electron@45.3.2": true,
+    "esbuild@0.28.2": true
+  },
+  "author": "Bob"
+}

@@ -1,0 +1,22 @@
+[project]
+name = "bob-calendar"
+version = "0.1.0"
+description = "Bob plugin: reads your calendar."
+requires-python = ">=3.12"
+dependencies = [
+    "bob-plugin-sdk",
+    "pyobjc-framework-EventKit>=10; sys_platform == 'darwin'",
+]
+
+[project.entry-points."bob.plugins"]
+calendar = "bob_calendar"
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "bob_calendar"
+
+[tool.uv.sources]
+bob-plugin-sdk = { workspace = true }

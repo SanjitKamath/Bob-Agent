@@ -1,0 +1,66 @@
+id: mail
+name: Mail
+version: 0.1.0
+description: Mail triage, summaries and draft replies. Sending and deleting always ask first.
+mcp: python -m bob_mail.server
+specialist:
+  name: Mail
+  description: Triage, summaries, draft replies, and pulling tasks out of mail
+  prompt: prompts/specialist.md
+  model_role: main
+  routes: [mail, email, e-mail, inbox, reply, thread, newsletter, unread]
+  servers: [tasks, calendar, knowledge]
+tools:
+  list_new: read
+  search: read
+  get_thread: read
+  summary: read
+  check_account: read
+  triage: draft
+  draft_reply: draft
+  send: external
+  archive: external
+  delete: external
+calls: [tasks.create]
+knowledge:
+  uses: ["*"]
+routines:
+  - id: mail-triage
+    title: Mail triage
+    tool: triage
+    every_minutes: 15
+    between: ["08:00", "20:00"]
+  - id: morning-brief
+    title: Morning brief
+    prompt: >-
+      Write my morning brief. Summarise mail that arrived since yesterday evening using
+      mail_list_new, list today's open tasks with tasks_list, and today's events with
+      calendar_today if it is available. Keep it under 200 words.
+    card: brief
+    cron: "30 8 * * 1-5"
+widget_card:
+  title: Mail
+  value: counts.urgent
+  status: "{needs_reply} need a reply"
+  buttons:
+    - {label: Triage now, tool: mail.triage}
+  refresh: on_event
+settings:
+  imap_host: {type: string, description: "IMAP server, for example imap.gmail.com"}
+  imap_port: {type: integer, default: 993}
+  smtp_host: {type: string, description: "SMTP server, for example smtp.gmail.com"}
+  smtp_port: {type: integer, default: 465}
+  username: {type: string, description: "Your mail address"}
+  inbox: {type: string, default: INBOX}
+  auto_draft: {type: boolean, default: true, description: "Draft replies for mail that needs one"}
+  fetch_limit: {type: integer, default: 50}
+  skip_subjects:
+    type: list
+    default: []
+    title: Skip mail whose subject contains
+    description: >-
+      One per line. Case doesn't matter and a match can be anywhere in the subject. Skipped
+      mail stays in your mailbox, is left out of lists, counts, triage and the morning
+      brief, and still shows up when you search.
+permissions:
+  network: [settings.imap_host, settings.smtp_host]

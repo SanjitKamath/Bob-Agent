@@ -1,0 +1,21 @@
+[project]
+name = "bob-files"
+version = "0.1.0"
+description = "Bob plugin: finds and reads files (Spotlight, grep), read-only."
+requires-python = ">=3.12"
+dependencies = [
+    "bob-plugin-sdk",
+]
+
+[project.entry-points."bob.plugins"]
+files = "bob_files"
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "bob_files"
+
+[tool.uv.sources]
+bob-plugin-sdk = { workspace = true }

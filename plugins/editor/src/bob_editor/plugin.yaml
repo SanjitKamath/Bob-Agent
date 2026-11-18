@@ -1,0 +1,25 @@
+id: editor
+name: Editor
+version: 0.1.0
+description: Reads and changes files in a folder you name in the chat. Every change can be undone.
+mcp: python -m bob_editor.server
+default_enabled: false
+specialist:
+  name: Editor
+  description: Reads, creates and edits files in a folder the user names, and undoes its changes
+  prompt: prompts/specialist.md
+  model_role: main
+  routes: [edit file, edit files, change file, rewrite file, rename file, move file, undo, revert, in this folder, in the folder]
+tools:
+  list_dir: read_granted
+  read_file: read_granted
+  find: read_granted
+  history: read_granted
+  write_file: write_granted
+  edit_file: write_granted
+  make_dir: write_granted
+  move: write_granted
+  delete: write_granted
+  undo: write_granted
+permissions:
+  network: none

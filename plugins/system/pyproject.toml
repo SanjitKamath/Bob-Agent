@@ -1,0 +1,21 @@
+[project]
+name = "bob-system"
+version = "0.1.0"
+description = "Bob plugin: notifications and clipboard."
+requires-python = ">=3.12"
+dependencies = [
+    "bob-plugin-sdk",
+]
+
+[project.entry-points."bob.plugins"]
+system = "bob_system"
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "bob_system"
+
+[tool.uv.sources]
+bob-plugin-sdk = { workspace = true }

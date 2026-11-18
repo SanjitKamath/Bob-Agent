@@ -1,0 +1,9 @@
+#!/bin/sh
+# Optional: install in a local repo's .git/hooks to refresh Bob's index after you push.
+# It only asks Bob to fetch from GitHub one minute later (git has no post-push hook).
+# Bob never reads this working copy.
+#   cp deploy/hooks/pre-push ~/dev/<repo>/.git/hooks/pre-push && chmod +x ~/dev/<repo>/.git/hooks/pre-push
+REPO=$(basename "$(git rev-parse --show-toplevel)")
+BOB=${BOB_CLI:-bob}
+( sleep 60 && "$BOB" index --repo "$REPO" >/dev/null 2>&1 ) &
+exit 0

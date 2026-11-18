@@ -1,0 +1,9 @@
+# The shared build: the same app, with Bob's own Python, plugins and setup files inside it
+# (Contents/Resources/runtime). Made by `npm run dmg:share`, which stages them first.
+extends: electron-builder.yml
+directories:
+  output: release-share
+  buildResources: build
+extraResources:
+  - from: runtime-stage
+    to: runtime

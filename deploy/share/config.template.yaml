@@ -1,0 +1,30 @@
+# Bob's settings. Setup wrote this file; edit it, or use Settings in the Bob app (what you
+# change there wins over this file). Everything runs on this Mac.
+
+ollama:
+  base_url: {{OLLAMA_URL}}       # the Ollama that Bob manages for itself
+  keep_alive: 30m
+  keep_warm: [router]            # roles kept loaded so replies never wait; add main if you have the memory
+
+models:
+{{MODELS}}
+
+server:
+  host: 127.0.0.1
+  port: 8765
+
+paths:
+  data: data
+  plugins: plugins
+  user_site: user_site           # plugins you add from .whl files are unpacked here
+
+plugins:
+  enabled: []
+
+knowledge:
+  root: ~/Documents/Bob Knowledge
+  poll_minutes: 15
+  collections:
+    - id: reading
+      sources:
+        - files: {}              # whatever you drop in

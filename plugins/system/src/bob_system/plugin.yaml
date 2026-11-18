@@ -1,0 +1,22 @@
+id: system
+name: System
+version: 0.1.0
+description: Notifications, the clipboard and opening links. Also answers general questions.
+mcp: python -m bob_system.server
+default_enabled: true
+specialist:
+  name: General
+  description: Everything that no other specialist covers
+  prompt: prompts/specialist.md
+  model_role: main
+  routes: [general, question, explain, summarise, chat, clipboard, notify]
+  servers: [knowledge]
+tools:
+  notify: draft
+  clipboard_get: draft
+  clipboard_set: draft
+  open_url: draft
+knowledge:
+  uses: ["*"]
+permissions:
+  network: none

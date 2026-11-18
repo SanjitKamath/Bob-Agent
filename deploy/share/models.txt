@@ -1,0 +1,253 @@
+# Local models on ollama.com/library, copied from the library page on 2026-11-17.
+# name | capabilities (t tools, v vision, e embedding, k thinking, a audio, d decision) | sizes
+# Cloud-only entries (no local download) are left out. A model with no sizes is pulled by name.
+# Refresh by hand each release; anything newer can be typed in the setup window.
+llama3.1|t|8b 70b 405b
+nomic-embed-text|e|
+deepseek-r1|tk|1.5b 7b 8b 14b 32b 70b 671b
+llama3.2|t|1b 3b
+qwen2.5|t|0.5b 1.5b 3b 7b 14b 32b 72b
+qwen3|tk|0.6b 1.7b 4b 8b 14b 30b 32b 235b
+gemma3|v|270m 1b 4b 12b 27b
+gemma2||2b 9b 27b
+mistral|t|7b
+gemma4|vtka|e2b e4b 12b 26b 31b
+qwen3.5|vtk|0.8b 2b 4b 9b 27b 35b 122b
+llama3||8b 70b
+qwen2.5-coder|t|0.5b 1.5b 3b 7b 14b 32b
+phi3||3.8b 14b
+mxbai-embed-large|e|335m
+gpt-oss|tk|20b 120b
+llava|v|7b 13b 34b
+qwen3-coder|t|30b 480b
+glm-ocr|vt|
+bge-m3|e|567m
+gemma||2b 7b
+codellama||7b 13b 34b 70b
+qwen||0.5b 1.8b 4b 7b 14b 32b 72b 110b
+phi4||14b
+qwen3.6|vtk|27b 35b
+llama2||7b 13b 70b
+qwen3-vl|vtk|2b 4b 8b 30b 32b 235b
+tinyllama||1.1b
+qwen3.8|vtk|27b
+qwen2|t|0.5b 1.5b 7b 72b
+qwen2.5vl|v|3b 7b 32b 72b
+mistral-nemo|t|12b
+minicpm-v|v|8b
+llama3.2-vision|v|11b 90b
+deepseek-coder||1.3b 6.7b 33b
+qwen3-embedding|e|0.6b 4b 8b
+llama3.3|t|70b
+dolphin3||8b
+smollm2|t|135m 360m 1.7b
+all-minilm|e|22m 33m
+deepseek-v3||671b
+olmo2||7b 13b
+deepseek-coder-v2||16b 236b
+codegemma||2b 7b
+snowflake-arctic-embed|e|22m 33m 110m 137m 335m
+mistral-small|t|22b 24b
+orca-mini||3b 7b 13b 70b
+granite3.1-moe|t|1b 3b
+starcoder2||3b 7b 15b
+mixtral|t|8x7b 8x22b
+translategemma|v|4b 12b 27b
+embeddinggemma|e|300m
+devstral-small-2|vt|24b
+llama2-uncensored||7b 70b
+falcon3||1b 3b 7b 10b
+mistral-small3.2|vt|24b
+gemma3n|v|e2b e4b
+smollm||135m 360m 1.7b
+sqlcoder||7b 15b
+llava-llama3|v|8b
+qwq|t|32b
+qwen3-coder-next|t|
+dolphin-llama3||8b 70b
+moondream|v|1.8b
+glm-4.7-flash|tk|
+cogito|t|3b 8b 14b 32b 70b
+starcoder||1b 3b 7b 15b
+wizardcoder||33b
+dolphin-mixtral||8x7b 8x22b
+openhermes||
+llama4|vt|16x17b 128x17b
+dolphin-mistral||7b
+hermes3|t|3b 8b 70b 405b
+phi4-mini|t|3.8b
+phi4-reasoning||14b
+granite-code||3b 8b 20b 34b
+dolphin-phi||2.7b
+ministral-3|vt|3b 8b 14b
+yi||6b 9b 34b
+granite4|t|350m 1b 3b
+command-r|t|35b
+phi||2.7b
+magistral|tk|24b
+mistral-openorca||7b
+nomic-embed-text-v2-moe|e|
+openchat||7b
+codestral||22b
+mistral-large|t|123b
+wizard-vicuna-uncensored||7b 13b 30b
+vicuna||7b 13b 33b
+deepseek-llm||7b 67b
+zephyr||7b 141b
+lfm2.5-thinking|tk|1.2b
+glm4||9b
+nous-hermes||7b 13b
+deepscaler||1.5b
+deepseek-v2||16b 236b
+neural-chat||7b
+wizardlm2||7b 8x22b
+falcon||7b 40b 180b
+llama2-chinese||7b 13b
+llava-phi3|v|3.8b
+qwen2-math||1.5b 7b 72b
+openthinker||7b 32b
+stablelm2||1.6b 12b
+codeqwen||7b
+granite3.3|t|2b 8b
+yi-coder||1.5b 9b
+lfm2|t|24b
+aya||8b 35b
+nous-hermes2||10.7b 34b
+stable-code||3b
+wizard-math||7b 13b 70b
+devstral|t|24b
+internlm2||1m 1.8b 7b 20b
+llama-guard3||1b 8b
+aya-expanse|t|8b 32b
+granite3.1-dense|t|2b 8b
+xwinlm||7b 13b
+granite3-dense|t|2b 8b
+llama3-chatqa||8b 70b
+phi3.5||3.8b
+dolphincoder||7b 15b
+samantha-mistral||7b
+yarn-llama2||7b 13b
+llama3-gradient||8b 70b
+granite3.2-vision|vt|2b
+llama3-groq-tool-use|t|8b 70b
+phind-codellama||34b
+starling-lm||7b
+solar||10.7b
+nemotron-3-nano|tk|4b 30b
+granite3-moe|t|1b 3b
+stable-beluga||7b 13b 70b
+shieldgemma||2b 9b 27b
+orca2||7b 13b
+deepcoder||1.5b 14b
+wizardlm||
+reader-lm||0.5b 1.5b
+paraphrase-multilingual|e|278m
+llama-pro||
+yarn-mistral||7b
+nexusraven||13b
+meditron||7b 70b
+mistral-small3.1|vt|24b
+bakllava|v|7b
+nemotron-3.5-lightning|tk|30b
+command-r-plus|t|104b
+exaone-deep||2.4b 7.8b 32b
+ornith|tk|9b 35b
+tinydolphin||1.1b
+medllama2||7b
+nemotron-mini|t|4b
+nemotron3|vtka|33b
+codegeex4||9b
+deepseek-ocr|v|3b
+opencoder||1.5b 8b
+wizardlm-uncensored||13b
+nemotron|t|70b
+granite4.1|t|3b 8b 30b
+reflection||70b
+codeup||13b
+athene-v2|t|72b
+nous-hermes2-mixtral||8x7b
+qwen3-next|tk|80b
+exaone3.5||2.4b 7.8b 32b
+megadolphin||120b
+everythinglm||13b
+nuextract||3.8b
+solar-pro||22b
+mathstral||7b
+magicoder||7b
+notus||7b
+falcon2||11b
+notux||8x7b
+stablelm-zephyr||3b
+bespoke-minicheck||7b
+duckdb-nsql||7b
+firefunction-v2|t|70b
+mistrallite||7b
+wizard-vicuna||13b
+open-orca-platypus2||13b
+rnj-1|t|8b
+codebooga||34b
+goliath||
+snowflake-arctic-embed2|e|568m
+olmo-3|tk|7b 32b
+medgemma|v|4b 27b
+ornith-1.5|vtk|9b 35b 122b 397b
+granite3.2|t|2b 8b
+sailor2||1b 8b 20b
+mistral-medium-3.5|vtk|128b
+r1-1776||70b 671b
+granite-embedding|e|30m 278m
+tulu3||8b 70b
+muse-glimmer|vtk|30b
+dbrx||132b
+devstral-2|t|123b
+granite3-guardian||2b 8b
+command-r7b|t|7b
+lfm2.5|tk|8b 24b
+alfred||40b
+phi4-mini-reasoning||3.8b
+olmo-3.1|tk|32b
+deepseek-v2.5||236b
+bge-large|e|335m
+granite4.2||3b 8b 30b
+smallthinker||3b
+qwen3.8-flash-next|vtk|
+command-a|t|111b
+cogito-2.1||671b
+marco-o1||7b
+medgemma1.5|v|4b
+functiongemma|t|270m
+command-r7b-arabic|t|7b
+laguna-s-2.1|tk|
+bonsai-2|vtk|2b 4b 9b 27b
+gpt-oss-safeguard|tk|20b 120b
+nemotron-cascade-2|tk|30b
+embeddinggemma-2|vea|270m 440m 570m 740m
+tev1|tdk|0.8b 4b
+laguna-xs-2.1|tk|
+phonon||
+strands-decider|d|2b
+mimo-v2.6|vtk|9b
+d3|vd|2b 4b 9b 27b
+nimble|tdk|9b
+flint|tk|40b
+minicpm-v4.6|v|1b
+lfm3|tk|1.7b
+north-mini-code-1.0|tk|
+clef-flash|vd|9b
+minicpm-v4.5|v|8b
+d1|vd|2b 3b
+nemotron-3.5-bolt|vtka|e4b
+lfm3-omni|vta|2b
+d1-omni|vda|600m 2b
+ripple-preview|tk|65b
+lfm3-vl|vtk|2b
+granite4.1-guardian|tk|8b
+autotrust-jev|vd|9b 35b
+laguna-xs.2|tk|
+pplx-decider|vd|27b
+lfm3-audio|vta|2b
+pplx-decider-flash|vd|4b
+nemotron-3.5-super|vtk|120b
+kev|d|
+nimble-v3|tdk|9b
+laya|ed|

@@ -1,0 +1,23 @@
+id: architect
+name: Architect
+version: 0.1.0
+description: Diagrams, ADRs and design notes grounded in your knowledge collections.
+mcp: python -m bob_architect.server
+specialist:
+  name: Architect
+  description: Designs, diagrams and ADRs grounded in your existing services
+  prompt: prompts/specialist.md
+  model_role: coder
+  routes: [architecture, design, diagram, adr, c4, sequence diagram, system design]
+  servers: [knowledge, files]
+tools:
+  render_diagram: write_output
+  new_adr: write_output
+  c4_skeleton: write_output
+knowledge:
+  uses: ["*"]
+settings:
+  output_dir: {type: path, default: ~/bob_output/architect, outside_git: true}
+permissions:
+  network: none
+  write: [settings.output_dir]

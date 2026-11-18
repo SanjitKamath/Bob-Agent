@@ -1,0 +1,23 @@
+# Builds Bob.app locally. No Apple developer account is needed for your own Mac.
+appId: com.bob.app
+productName: Bob
+directories:
+  output: release
+  buildResources: build
+# Use the Electron already in node_modules instead of downloading it again.
+electronDist: node_modules/electron/dist
+files:
+  - dist/**
+  - package.json
+mac:
+  target: dir
+  category: public.app-category.productivity
+  icon: build/icon.png        # converted to .icns at build time
+  identity: null            # ad-hoc: not signed with a developer certificate
+  extendInfo:
+    LSUIElement: true       # starts as a menu bar app; the Dock icon appears while the Bob window is open
+    NSUserNotificationAlertStyle: alert
+    NSMicrophoneUsageDescription: Bob listens only while you press the microphone button or the hotkey, to turn what you say into text on this Mac. The sound is never saved or sent anywhere.
+protocols:
+  - name: Bob
+    schemes: [bob]

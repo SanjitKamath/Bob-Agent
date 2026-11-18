@@ -1,0 +1,28 @@
+id: files
+name: Files
+version: 0.1.0
+description: Finds and reads files on this Mac (Spotlight, grep). Read-only.
+mcp: python -m bob_files.server
+default_enabled: true
+specialist:
+  name: Finder
+  description: Finds files and answers "where is" and "what did I write about" questions
+  prompt: prompts/specialist.md
+  model_role: main
+  routes: [find, file, files, folder, where is, locate, grep, code lookup]
+  servers: [knowledge]
+tools:
+  spotlight: read
+  grep: read
+  read_file: read
+  list_dir: read
+  reveal_in_finder: read
+knowledge:
+  uses: ["*"]
+settings:
+  read_roots:
+    type: string
+    default: "~/Documents:~/Desktop:~/Downloads"
+    description: Folders Bob may read, separated by colons. Credentials are never read.
+permissions:
+  network: none

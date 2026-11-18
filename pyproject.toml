@@ -1,0 +1,60 @@
+[project]
+name = "bob-workspace"
+version = "0.1.0"
+description = "Bob: a local personal agent. Workspace root."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "bobd",
+    "bob-plugin-sdk",
+    "bob-knowledge",
+    "bob-files",
+    "bob-tasks",
+    "bob-mail",
+    "bob-calendar",
+    "bob-documents",
+    "bob-editor",
+    "bob-system",
+    "bob-web",
+    "bob-architect",
+    "bob-voice",
+]
+
+[tool.uv.workspace]
+members = ["sdk", "core", "voice", "plugins/*"]
+
+[tool.uv.sources]
+bobd = { workspace = true }
+bob-plugin-sdk = { workspace = true }
+bob-knowledge = { workspace = true }
+bob-files = { workspace = true }
+bob-tasks = { workspace = true }
+bob-mail = { workspace = true }
+bob-calendar = { workspace = true }
+bob-documents = { workspace = true }
+bob-editor = { workspace = true }
+bob-system = { workspace = true }
+bob-web = { workspace = true }
+bob-architect = { workspace = true }
+bob-voice = { workspace = true }
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-asyncio>=0.24", "ruff>=0.6"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+filterwarnings = ["ignore:builtin type .* has no __module__ attribute:DeprecationWarning"]
+testpaths = ["sdk/tests", "core/tests", "plugins"]
+# Private plugins in custom_plugins/ are tested with: uv run python deploy/custom_plugins.py test
+python_files = ["test_*.py"]
+addopts = "-q --import-mode=importlib"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+# The formatter wraps code; the few longer lines left are string templates.
+ignore = ["E501"]
+

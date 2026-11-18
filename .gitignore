@@ -1,0 +1,93 @@
+# Custom plugins (private)
+custom_plugins/
+
+# Knowledge base / proprietary data (adjust to your real path)
+knowledge/
+knowledgebase/
+knowledge_base/
+data/
+docs_private/
+*.db
+*.sqlite*
+vectorstore/
+chroma/
+faiss_index/
+embeddings/
+
+# Downloaded models and weights
+models/
+*.gguf
+*.ggml
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.ckpt
+.cache/huggingface/
+
+# Secrets and local config
+.env
+.env.*
+*.pem
+*.key
+secrets*
+config.local.*
+
+# Python, Node and OS clutter
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.DS_Store
+
+# --- Bob-specific ---
+# Built app bundles (bundled Python runtime, signed .app, asar)
+app/release/
+app/release-share/
+app/dist/
+app/out/
+*.dmg
+*.asar
+*.app/
+
+# Private eval data (retrieval over private facts)
+evals/golden/*private*
+evals/private/
+
+# Python caches / test artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Local runtime state
+*.log
+*.sqlite3
+
+# --- From Bob top-level layout ---
+# Custom plugins (private). /plugins/ is public and tracked.
+/custom_plugins/
+
+# Knowledge base / local data
+/data/
+
+# Local config and tooling state
+config.local.yaml
+.claude/
+.python-version.local
+.venv/
+
+# Staged runtime (bundled Python, models.json, config template) - build output
+app/runtime-stage/
+
+# Built wheels, vector indexes, local DBs
+*.whl
+*.lance
+lancedb/
+*.sqlite-wal
+*.sqlite-shm
+bob.sqlite*

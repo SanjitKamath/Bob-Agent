@@ -1,0 +1,45 @@
+# Tool choice: 40 prompts with the expected server and first tool.
+# Covers the plugins that are on by default. Run with: bob eval tool_choice
+kind: tool_choice
+target: {accuracy: 0.9}
+cases:
+  - {prompt: "Add buy milk to my task list", server: tasks, tool: create}
+  - {prompt: "Remind me to renew my passport, due 2026-12-01", server: tasks, tool: create}
+  - {prompt: "Create a high priority task to call the bank tomorrow", server: tasks, tool: create}
+  - {prompt: "New todo: send the KYC form to Priya", server: tasks, tool: create}
+  - {prompt: "What are my open tasks?", server: tasks, tool: list}
+  - {prompt: "Show me everything on my todo list", server: tasks, tool: list}
+  - {prompt: "Which tasks have I already completed?", server: tasks, tool: list}
+  - {prompt: "List my tasks by priority", server: tasks, tool: list}
+  - {prompt: "Mark task 3 as done", server: tasks, tool: complete}
+  - {prompt: "I finished task 12, tick it off", server: tasks, tool: complete}
+  - {prompt: "Reopen task 5, it is not done after all", server: tasks, tool: complete}
+  - {prompt: "Change the due date of task 4 to 2026-11-30", server: tasks, tool: update}
+  - {prompt: "Set task 7 to low priority", server: tasks, tool: update}
+  - {prompt: "Rename task 2 to 'Review the Q3 report'", server: tasks, tool: update}
+  - {prompt: "Pull the action items out of these notes and add them as tasks: - email Ravi the deck - book the meeting room", server: tasks, tool: extract_from}
+  - {prompt: "Turn this into tasks: 1. fix the login bug 2. update the README 3. tag the release", server: tasks, tool: extract_from}
+  - {prompt: "Find the file called budget-2026 on my Mac", server: files, tool: spotlight}
+  - {prompt: "Where is my passport scan?", server: files, tool: spotlight}
+  - {prompt: "Locate the document about the office lease", server: files, tool: spotlight}
+  - {prompt: "Find files mentioning quarterly forecast", server: files, tool: spotlight}
+  - {prompt: "Grep ~/Documents for the pattern TODO", server: files, tool: grep}
+  - {prompt: "Search the folder ~/Documents/notes for lines containing 'invoice 42'", server: files, tool: grep}
+  - {prompt: "Which files under ~/Desktop contain the regex def \\w+_handler", server: files, tool: grep}
+  - {prompt: "Read the file ~/Documents/notes/todo.md", server: files, tool: read_file}
+  - {prompt: "Show me the contents of ~/Desktop/plan.txt", server: files, tool: read_file}
+  - {prompt: "Open ~/Documents/readme.md and show lines 10 to 40", server: files, tool: read_file}
+  - {prompt: "What is in the folder ~/Downloads?", server: files, tool: list_dir}
+  - {prompt: "List the files in ~/Documents/Contracts", server: files, tool: list_dir}
+  - {prompt: "Show ~/Documents/report.pdf in the Finder", server: files, tool: reveal_in_finder}
+  - {prompt: "Reveal the folder ~/Desktop/photos in Finder", server: files, tool: reveal_in_finder}
+  - {prompt: "What is on my clipboard?", server: system, tool: clipboard_get}
+  - {prompt: "Summarise the text I just copied", server: system, tool: clipboard_get}
+  - {prompt: "Copy 'meeting moved to 3pm' to my clipboard", server: system, tool: clipboard_set}
+  - {prompt: "Put this on the clipboard: 127.0.0.1:8765", server: system, tool: clipboard_set}
+  - {prompt: "Open https://docs.ollama.com in my browser", server: system, tool: open_url}
+  - {prompt: "Open the link https://modelcontextprotocol.io", server: system, tool: open_url}
+  - {prompt: "Show me a notification that says the build finished", server: system, tool: notify}
+  - {prompt: "Notify me: time to stretch", server: system, tool: notify}
+  - {prompt: "Which knowledge collections do you have?", server: knowledge, tool: list_collections}
+  - {prompt: "What knowledge bases can you search?", server: knowledge, tool: list_collections}
